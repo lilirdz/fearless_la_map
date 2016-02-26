@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Fearless Urban Life</title> 
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+</head> 
+<body>
+  <div id="map" style="width: 550px; height: 500px;"></div>
+  
+
+  <script>
+
+
+var locations = [
+['DTLA', 
+'<strong> DTLA</strong><p>DALISHA MUNTON//(209) 496-1544<br> 300 Santa Fe Ave #690,Los Angeles,CA 90012</p>',
+34.045924, 
+-118.232604, 
+7
+],
+['Glendale/Pasadena', 
+'<strong> GLENDALE//PASADENA</strong><p>TJ THORTON//(832) 409-9262<br>132 SINCLAIR AVE #6 GLENDALE, CA 91206</p>',
+34.152725, 
+-118.211726, 
+6
+],
+['West Hollywood',
+'<strong>WEST HOLLYWOOD</strong><p>SALOMON JIMENEZ //(928) 750-0679 <br>5200 WILSHIRE BLVD, LOS ANGELES, CA 90036</p>',
+34.060631, 
+-118.344899, 
+5
+],
+['North Hollywood',
+'<strong>NORTH HOLLYWOOD</strong><p>BEN MURTI //(650) 773-8550<br>10839 MORRISON ST. APT 4, NORTH HOLLYWOOD CA 91601</p>',
+34.161085, 
+-118.367243,
+4
+],
+['South Bay',
+'<strong>SOUTH BAY</strong><p>JOEL JIMENEZ //(928) 581-5812 <br>341 E. HARDING STREETLONG BEACH, CA 90805</p>',
+33.867579, 
+-118.190854, 
+3
+],
+['OC',
+'<strong>OC</strong><p>JASON ALVES //(916) 764-7652<br>1356 RIDERWOOD AVE, HACIENDA HEIGHTS, CA 91745</p>',
+33.854585, 
+-117.72572, 
+2
+],
+['San Gabriel Valley',
+'<strong>SAN GABRIEL VALLEY</strong><p>NATE SCHWEGMAN //(949) 468-7111 <br>1189 S. COUNTRY GLEN WAYANAHEIM HILLS 92808</p>',
+34.012673, 
+-117.984985, 
+1
+]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'),
+    {
+    zoom: 10,
+    center: new google.maps.LatLng(33.979179, -118.032844),
+    styles:[{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}],
+    panControl:false,
+    zoomControl:false,
+    mapTypeControl:false,
+    scaleControl:true,
+    streetViewControl:false,
+    overviewMapControl:true,
+    rotateControl:false, 
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+
+    var infowindow = new google.maps.InfoWindow();
+      
+
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][2], locations[i][3]),
+      icon: 'http://s11.postimg.org/a28gomwwf/fearless.png',
+      map:map
+        
+      });
+      
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][1]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+      }
+
+
+
+  </script>
+  
+</body>
+</html>
